@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+	Example Flask
+	</title>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+
+<h1>Example of web app with </h1>
+
+	<img src="{{url_for('static', filename='flask-logo.png')}}" width=200 >
+
+	<br>
+	<br>
+	
+	<p>
+	Evaluate the integral given by
+	\(
+	I = \int_{x_1}^{x_2} \left( m \cdot x + b \right) dx
+	\)
+	</p>
+	
+	<br>
+
+
+	<form method=post action="">
+	<table>
+	  {% for field in form %}
+		<tr>
+		<td class="name">\( {{ field.description }} \) &nbsp;&nbsp;</td>
+		<td>{{ field(size=12) }}</td>
+		<td>{{ field.label }}</td>
+		{% if field.errors %}
+		  <td><ul class=errors>
+		  {% for error in field.errors %}
+			<li><font color="red">{{ error }}</font></li>
+		  {% endfor %}</ul></td>
+		{% endif %}
+		</tr>
+	  {% endfor %}
+	</table>
+	<p><input type="submit" value="Compute"></form></p>
+
+	<p>
+	The value of integral is \( I = {{I}} \).
+	</p>
+
+<hr>
+
+	<p>
+	{% if figure != None %}
+	<img src="data:image/png;base64,{{ figure }}" width="600">
+	{% endif %}
+	</p>
+
+</body>
+</html>
